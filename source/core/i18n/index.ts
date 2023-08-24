@@ -6,24 +6,9 @@ import en_US from './languages/en-US';
 
 const defaultLanguage: Language = 'en_US';
 
-declare module 'react-i18next' {
-  interface CustomTypeOptions {
-    defaultNS: 'en_US';
-    resources: typeof languages;
-  }
-}
-
-declare module 'i18next' {
-  interface CustomTypeOptions {
-    returnNull: false;
-    defaultNS: 'en_US';
-    resources: typeof languages;
-  }
-}
-
 export const availableLanguages = {en_US};
 
-const languages = Object.entries(availableLanguages).reduce(
+export const languages = Object.entries(availableLanguages).reduce(
   (acc, [key, value]) => ({
     ...acc,
     [`${key}`]: {
@@ -35,7 +20,9 @@ const languages = Object.entries(availableLanguages).reduce(
   },
 );
 
-i18n.use(initReactI18next).init({
-  resources: languages,
-  lng: defaultLanguage,
-});
+export const initI18N = () => {
+  i18n.use(initReactI18next).init({
+    resources: languages,
+    lng: defaultLanguage,
+  });
+};

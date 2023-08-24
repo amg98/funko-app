@@ -1,10 +1,11 @@
-import {FC} from 'react';
-import {Platform, StatusBar, StyleSheet, Text, UIManager} from 'react-native';
+import {FC, useEffect} from 'react';
+import {Platform, StatusBar, StyleSheet, UIManager} from 'react-native';
 import ThemeProvider from '../common/ui/theme/provider';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import './i18n';
+import {initI18N} from './i18n';
+import Text from '../common/ui/components/Text';
 
 if (
   Platform.OS === 'android' &&
@@ -20,13 +21,17 @@ const styles = StyleSheet.create({
 });
 
 export const App: FC = () => {
+  useEffect(() => {
+    initI18N();
+  }, []);
+
   return (
     <SafeAreaProvider>
       <ThemeProvider>
         <GestureHandlerRootView style={styles.gestureHandler}>
           <NavigationContainer>
             <StatusBar />
-            <Text>HELLO</Text>
+            <Text variant="header4">HELLO</Text>
           </NavigationContainer>
         </GestureHandlerRootView>
       </ThemeProvider>

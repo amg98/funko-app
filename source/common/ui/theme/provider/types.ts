@@ -1,5 +1,4 @@
 import type {ReactNode} from 'react';
-import 'styled-components';
 import type {useThemeInternal} from '.';
 
 export type Props = {
@@ -8,6 +7,6 @@ export type Props = {
 
 export type Theme = ReturnType<typeof useThemeInternal>;
 
-declare module 'styled-components' {
+declare module 'styled-components/native' {
   export interface DefaultTheme extends Theme {}
 }

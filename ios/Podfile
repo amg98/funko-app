@@ -18,7 +18,7 @@ prepare_react_native_project!
 #   dependencies: {
 #     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
 # ```
-flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled
+flipper_config = FlipperConfiguration.disabled
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -37,16 +37,9 @@ target 'FunkoTest' do
 	end
 
   config = use_native_modules!
+  use_frameworks! :linkage => :static
 
   $RNFirebaseAsStaticFramework = true
-
-  pod 'FirebaseCore', :modular_headers => true
-  pod 'FirebaseCoreExtension', :modular_headers => true
-  pod 'GTMSessionFetcher', :modular_headers => true
-  pod 'FirebaseCoreInternal', :modular_headers => true
-  pod 'FirebaseAppCheckInterop', :modular_headers => true
-  pod 'FirebaseAuthInterop', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
 
   # Flags change depending on the env values.
   flags = get_default_flags()
