@@ -4,11 +4,15 @@ import Text from '../Text';
 import type {ContainerProps, TitleProps} from './types';
 import {RectButton} from 'react-native-gesture-handler';
 
-export const Container = styled(RectButton)<ContainerProps>`
-  padding: 20px 16px;
+export const Container = styled.View<ContainerProps>`
   border-radius: 32px;
   background-color: ${({theme: {colors}}) => colors.accent};
   opacity: ${({disabled}) => (disabled ? 0.5 : 1)};
+  overflow: hidden;
+`;
+
+export const StyledButton = styled(RectButton)`
+  padding: 16px;
 `;
 
 export const Title = styled(Text).attrs<TitleProps>({

@@ -1,4 +1,4 @@
-import type dictionary from './languages/en-US';
+import type dictionary from './languages/es-ES';
 import type {availableLanguages, languages} from '.';
 
 export type Dictionary = typeof dictionary;
@@ -12,7 +12,7 @@ export type Language = keyof typeof availableLanguages;
 
 declare module 'react-i18next' {
   interface CustomTypeOptions {
-    defaultNS: 'en_US';
+    defaultNS: 'es_ES';
     resources: typeof languages;
   }
 }
@@ -20,7 +20,7 @@ declare module 'react-i18next' {
 declare module 'i18next' {
   interface CustomTypeOptions {
     returnNull: false;
-    defaultNS: 'en_US';
+    defaultNS: 'es_ES';
     resources: typeof languages;
   }
 }

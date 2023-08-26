@@ -1,5 +1,5 @@
 import {FC, useCallback, useState} from 'react';
-import {Container, Loader, Title} from './styles';
+import {Container, Loader, StyledButton, Title} from './styles';
 import {Props} from './types';
 import {useTheme} from 'styled-components/native';
 
@@ -24,15 +24,13 @@ const Button: FC<Props> = ({
   }, [onPress, onPressAsync]);
 
   return (
-    <Container
-      disabled={disabled}
-      enabled={!disabled && !loading}
-      onPress={handlePress}
-      style={style}>
-      <Title loading={loading} disabled={disabled}>
-        {title}
-      </Title>
-      {loading && <Loader color={colors.neutral100} />}
+    <Container disabled={disabled} style={style}>
+      <StyledButton onPress={handlePress} enabled={!disabled && !loading}>
+        <Title loading={loading} disabled={disabled}>
+          {title}
+        </Title>
+        {loading && <Loader color={colors.neutral100} />}
+      </StyledButton>
     </Container>
   );
 };

@@ -5,7 +5,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {initI18N} from './i18n';
-import Text from '../common/ui/components/Text';
+import AppNavigator from './navigation';
 
 if (
   Platform.OS === 'android' &&
@@ -31,7 +31,7 @@ export const App: FC = () => {
         <GestureHandlerRootView style={styles.gestureHandler}>
           <NavigationContainer>
             <StatusBar />
-            <Text variant="header4">HELLO</Text>
+            <AppNavigator />
           </NavigationContainer>
         </GestureHandlerRootView>
       </ThemeProvider>

@@ -8,7 +8,7 @@ const Icon: FC<IconProps> = ({
   color = colors.neutral0,
   ...props
 }) => (
-  <Svg width={size} fill="none" viewBox="0 0 16 16" {...props}>
+  <Svg width={size} height={size} fill="none" viewBox="0 0 16 16" {...props}>
     <Path
       fill={color}
       fillRule="evenodd"

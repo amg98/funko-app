@@ -8,7 +8,7 @@ const FONTS = {
   MontserratSemiBold: 'Montserrat SemiBold',
 };
 
-const TEXT_STYLES: Record<Variant, RuleSet<object>> = {
+export const TEXT_STYLES: Record<Variant, RuleSet<object>> = {
   header4: css`
     font-family: ${FONTS.MontserratSemiBold};
     font-size: 22px;

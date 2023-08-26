@@ -9,7 +9,7 @@ const Icon: FC<IconProps> = ({
   ...props
 }) => (
   <Svg width={size} height={size} fill="none" viewBox="0 0 20 20" {...props}>
-    <Circle cx="10" cy="10" r="9.25" stroke={color} stroke-width={1.5} />
+    <Circle cx="10" cy="10" r="9.25" stroke={color} strokeWidth={1.5} />
   </Svg>
 );
 
