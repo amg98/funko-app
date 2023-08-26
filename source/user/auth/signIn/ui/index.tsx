@@ -26,6 +26,8 @@ const SignIn: FC<Props> = ({router, useViewModel}) => {
         <EmailInput
           title={t('sign-in/email')}
           placeholder={t('sign-in/email-placeholder')}
+          keyboardType="email-address"
+          autoCapitalize="none"
           value={form.email}
           onChangeText={actions.email}
         />

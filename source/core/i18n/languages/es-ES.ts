@@ -48,7 +48,8 @@ const dictionary = {
   'hint/empty': 'No data has been found. Try again?',
 
   // Alerts
-  'alert/errorTitle': 'An error has happened',
+  'alert/error-title': 'An error has happened',
+  'alert/unknown-error': 'An unexpected error happened. Please try again later',
 };
 
 export default dictionary;

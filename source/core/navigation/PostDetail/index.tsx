@@ -7,13 +7,17 @@ const PostDetailScreen: ScreenComponent<'PostDetail'> = ({
   navigation,
   route,
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const goToPostComments = useCallback((postId: string) => {
     // TODO
   }, []);
 
-  const goToUserProfile = useCallback((userId: string) => {
-    // TODO
-  }, []);
+  const goToUserProfile = useCallback(
+    (userId: string) => {
+      navigation.push('Profile', {userId});
+    },
+    [navigation],
+  );
 
   return (
     <PostDetail

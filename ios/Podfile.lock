@@ -673,9 +673,6 @@ PODS:
     - React-Core (= 0.72.3)
     - React-jsi (= 0.72.3)
     - ReactCommon/turbomodule/core (= 0.72.3)
-  - Firebase/Auth (10.12.0):
-    - Firebase/CoreOnly
-    - FirebaseAuth (~> 10.12.0)
   - Firebase/CoreOnly (10.12.0):
     - FirebaseCore (= 10.12.0)
   - Firebase/Firestore (10.12.0):
@@ -687,13 +684,7 @@ PODS:
   - Firebase/Storage (10.12.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 10.12.0)
-  - FirebaseAppCheckInterop (10.13.0)
-  - FirebaseAuth (10.12.0):
-    - FirebaseAppCheckInterop (~> 10.0)
-    - FirebaseCore (~> 10.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/Environment (~> 7.8)
-    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+  - FirebaseAppCheckInterop (10.14.0)
   - FirebaseAuthInterop (10.13.0)
   - FirebaseCore (10.12.0):
     - FirebaseCoreInternal (~> 10.0)
@@ -1280,10 +1271,6 @@ PODS:
   - RNFBApp (18.3.0):
     - Firebase/CoreOnly (= 10.12.0)
     - React-Core
-  - RNFBAuth (18.3.0):
-    - Firebase/Auth (= 10.12.0)
-    - React-Core
-    - RNFBApp
   - RNFBFirestore (18.3.0):
     - Firebase/Firestore (= 10.12.0)
     - nanopb (< 2.30910.0, >= 2.30908.0)
@@ -1378,7 +1365,6 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RealmJS (from `../node_modules/realm`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
-  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
@@ -1394,7 +1380,6 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAppCheckInterop
-    - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreExtension
@@ -1529,8 +1514,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/realm"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
-  RNFBAuth:
-    :path: "../node_modules/@react-native-firebase/auth"
   RNFBFirestore:
     :path: "../node_modules/@react-native-firebase/firestore"
   RNFBMessaging:
@@ -1565,8 +1548,7 @@ SPEC CHECKSUMS:
   FBLazyVector: 4cce221dd782d3ff7c4172167bba09d58af67ccb
   FBReactNativeSpec: c6bd9e179757b3c0ecf815864fae8032377903ef
   Firebase: 07150e75d142fb9399f6777fa56a187b17f833a0
-  FirebaseAppCheckInterop: 5e12dc623d443dedffcde9c6f3ed41510125d8ef
-  FirebaseAuth: a66c1e14ec58f41d154a4b41ce1a23ea00ad4805
+  FirebaseAppCheckInterop: c87f1d5421c852413dd936b2b2340b21e62501a0
   FirebaseAuthInterop: 74875bde5d15636522a8fe98beb561df7a54db58
   FirebaseCore: f86a1394906b97ac445ae49c92552a9425831bed
   FirebaseCoreExtension: 0ce5ac36042001cfa233ce7bfa28e5c313cf80f4
@@ -1629,7 +1611,6 @@ SPEC CHECKSUMS:
   ReactCommon: 09769d25dd53cfff9e0b59a823490bc32ca42e71
   RealmJS: fd89f477b8469188d45243c85bad4e0936d74457
   RNFBApp: f0b5cf917b0b91a0ae890fbbaec0fb5d3285ea46
-  RNFBAuth: e3f51b2e4acc39e4664b24117f9106af493b2dd3
   RNFBFirestore: f595eeb9f796c3ddfbe05bc850dc4c2a5fef96d3
   RNFBMessaging: dec20e8fa230fb776b94c33384676da33c605d2e
   RNFBStorage: 405aab426f6a913ab970d5842acde8abfaec6c04

@@ -1,20 +1,30 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useMemo, useState} from 'react';
 import {useFormHandler} from '../../../../common/presentation/useFormHandler';
+import {DEFAULT_VALUES, validationSchema} from '../domain';
+import {showError} from '../../../../common/ui/utils/error';
+import {useSignIn} from '../data';
 
 const useViewModel = () => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    rememberMe: false,
-  });
+  const signIn = useSignIn();
+
+  const [form, setForm] = useState(DEFAULT_VALUES);
+
+  const formValid = useMemo(() => validationSchema.isValidSync(form), [form]);
 
   const onLogin = useCallback(async () => {
-    // TODO
-  }, []);
+    if (!formValid) {
+      return;
+    }
+    try {
+      await signIn(form);
+    } catch (error) {
+      showError(error);
+    }
+  }, [form, formValid, signIn]);
 
   return {
     form,
-    formValid: false, // TODO
+    formValid,
     onLogin,
     actions: {
       email: useFormHandler(form, setForm, 'email'),

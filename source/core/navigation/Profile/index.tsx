@@ -4,9 +4,12 @@ import Profile from '../../../user/profile/ui';
 import useViewModel from '../../../user/profile/presentation';
 
 const ProfileScreen: ScreenComponent<'Profile'> = ({navigation, route}) => {
-  const goToPost = useCallback((postId: string) => {
-    // TODO
-  }, []);
+  const goToPost = useCallback(
+    (postId: string) => {
+      navigation.push('PostDetail', {postId});
+    },
+    [navigation],
+  );
 
   return (
     <Profile

@@ -5,9 +5,12 @@ import useViewModel from '../../../../posts/add/chooseImage/presentation';
 import {LocalImage} from '../../../../posts/add/common/domain/LocalImage';
 
 const ChooseImageScreen: ScreenComponent<'ChooseImage'> = ({navigation}) => {
-  const goToDescription = useCallback((image: LocalImage) => {
-    // TODO
-  }, []);
+  const goToDescription = useCallback(
+    (image: LocalImage) => {
+      navigation.navigate('SetDescription', {image});
+    },
+    [navigation],
+  );
 
   return (
     <ChoosePostImage

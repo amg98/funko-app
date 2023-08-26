@@ -5,20 +5,24 @@ import {ScreenComponent} from '../types';
 
 const FeedScreen: ScreenComponent<'Feed'> = ({navigation}) => {
   const goToMyProfile = useCallback(() => {
-    // TODO
-  }, []);
+    navigation.push('Profile', {userId: null});
+  }, [navigation]);
 
   const goToNewPost = useCallback(() => {
     navigation.navigate('NewPost');
   }, [navigation]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const goToPostComments = useCallback((postId: string) => {
     // TODO
   }, []);
 
-  const goToUserProfile = useCallback((userId: string) => {
-    // TODO
-  }, []);
+  const goToUserProfile = useCallback(
+    (userId: string) => {
+      navigation.push('Profile', {userId});
+    },
+    [navigation],
+  );
 
   return (
     <Feed

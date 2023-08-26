@@ -4,7 +4,7 @@ import {AppError} from '../../domain/AppError';
 
 export const showError = (error: unknown) => {
   const appError = error as AppError;
-  Alert.alert(t('alert/errorTitle'), appError.message, [
+  Alert.alert(t('alert/error-title'), appError.message, [
     {text: t('action/ok')},
   ]);
 };

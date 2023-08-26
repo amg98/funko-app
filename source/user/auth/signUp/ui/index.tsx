@@ -3,12 +3,14 @@ import type {Props} from './types';
 import {Screen} from '../../../../common/ui/components/Screen';
 import {
   Content,
+  EmailInput,
   Label,
   Link,
   NameInput,
   PasswordInput,
   Row,
   SubmitButton,
+  SurnameInput,
   Title,
 } from './styles';
 import {useTranslation} from 'react-i18next';
@@ -29,15 +31,17 @@ const SignUp: FC<Props> = ({router, useViewModel}) => {
           value={form.name}
           onChangeText={actions.name}
         />
-        <NameInput
+        <SurnameInput
           title={t('sign-up/surname')}
           placeholder={t('sign-up/surname-placeholder')}
           value={form.surname}
           onChangeText={actions.surname}
         />
-        <NameInput
+        <EmailInput
           title={t('sign-up/email')}
           placeholder={t('sign-up/email-placeholder')}
+          keyboardType="email-address"
+          autoCapitalize="none"
           value={form.email}
           onChangeText={actions.email}
         />
