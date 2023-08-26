@@ -21,7 +21,8 @@ const Profile: FC<Props> = ({router, useViewModel}) => {
   const renderItem = useCallback(
     ({index, item}: ListRenderItemInfo<PostModel>) => (
       <Post
-        post={item}
+        id={item.id}
+        imageUrl={item.imageUrl}
         onPress={router.goToPost}
         withRightSeparator={(index + 1) % 3 !== 0}
       />

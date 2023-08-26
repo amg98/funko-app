@@ -16,7 +16,7 @@ import ToggleButton from '../../../../common/ui/components/ToggleButton';
 import Hint from '../../../../common/ui/components/Hint';
 
 const SignIn: FC<Props> = ({router, useViewModel}) => {
-  const {form, actions, onLogin} = useViewModel();
+  const {form, formValid, actions, onLogin} = useViewModel();
   const {t} = useTranslation();
 
   return (
@@ -47,7 +47,11 @@ const SignIn: FC<Props> = ({router, useViewModel}) => {
             {t('sign-in/forgot-password')}
           </Label>
         </Row>
-        <SubmitButton title={t('action/sign-in')} onPressAsync={onLogin} />
+        <SubmitButton
+          title={t('action/sign-in')}
+          disabled={!formValid}
+          onPressAsync={onLogin}
+        />
         <Hint
           title={t('sign-in/no-account')}
           subtitle={t('action/create-account')}

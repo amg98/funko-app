@@ -16,7 +16,7 @@ import ToggleButton from '../../../../common/ui/components/ToggleButton';
 import Hint from '../../../../common/ui/components/Hint';
 
 const SignUp: FC<Props> = ({router, useViewModel}) => {
-  const {form, actions, onSignUp} = useViewModel();
+  const {form, formValid, actions, onSignUp} = useViewModel();
   const {t} = useTranslation();
 
   return (
@@ -65,6 +65,7 @@ const SignUp: FC<Props> = ({router, useViewModel}) => {
         </Row>
         <SubmitButton
           title={t('action/create-account')}
+          disabled={!formValid}
           onPressAsync={onSignUp}
         />
         <Hint

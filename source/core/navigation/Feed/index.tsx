@@ -9,8 +9,8 @@ const FeedScreen: ScreenComponent<'Feed'> = ({navigation}) => {
   }, []);
 
   const goToNewPost = useCallback(() => {
-    // TODO
-  }, []);
+    navigation.navigate('NewPost');
+  }, [navigation]);
 
   const goToPostComments = useCallback((postId: string) => {
     // TODO

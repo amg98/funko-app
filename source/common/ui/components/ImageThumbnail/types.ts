@@ -1,9 +1,9 @@
 import {StyleProp} from 'react-native';
-import {Post} from '../../domain/User';
 import {ImageStyle} from 'expo-image';
 
 export type Props = {
-  post: Post;
+  id: string;
+  imageUrl: string;
   size?: number;
   onPress: (postId: string) => void;
   style?: StyleProp<ImageStyle>;

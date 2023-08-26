@@ -5,6 +5,8 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-bottom-width: 1px;
+  border-color: ${({theme: {colors}}) => colors.neutral95};
 `;
 
 export const Row = styled.View`

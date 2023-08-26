@@ -4,6 +4,8 @@ import Text from '../../../../common/ui/components/Text';
 export const Container = styled.View`
   padding: ${({theme: {device}}) => device.safeTop + 18}px 16px 5px;
   align-items: center;
+  border-bottom-width: 1px;
+  border-color: ${({theme: {colors}}) => colors.neutral95};
 `;
 
 export const Row = styled.View`

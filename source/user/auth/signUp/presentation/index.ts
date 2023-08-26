@@ -16,6 +16,7 @@ const useViewModel = () => {
 
   return {
     form,
+    formValid: false, // TODO
     onSignUp,
     actions: {
       name: useFormHandler(form, setForm, 'name'),

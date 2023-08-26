@@ -5,6 +5,7 @@ const dictionary = {
   'action/create-account': 'Crear cuenta',
   'action/sign-in': 'Iniciar sesión',
   'action/try-again': 'Try again',
+  'action/ok': 'OK',
 
   // Feed card
   'feed-card/see-comments': 'Ver comentario',
@@ -45,6 +46,9 @@ const dictionary = {
 
   // Hints
   'hint/empty': 'No data has been found. Try again?',
+
+  // Alerts
+  'alert/errorTitle': 'An error has happened',
 };
 
 export default dictionary;

@@ -1,9 +1,9 @@
-import {Image} from 'expo-image';
+import {Image as ImageBase} from 'expo-image';
 import styled from 'styled-components/native';
 import {ImageProps} from './types';
 import {RectButton} from 'react-native-gesture-handler';
 
-export const PostImage = styled(Image)<ImageProps>`
+export const Image = styled(ImageBase)<ImageProps>`
   width: ${({size}) => size}px;
   aspect-ratio: 1;
 `;
