@@ -19,13 +19,12 @@ const Header: FC<Props> = ({
       </Left>
       <Title>{title}</Title>
       <Right>
-        {!rightDisabled && (
-          <ActionButton
-            title={rightTitle}
-            onPress={onPressRight}
-            onPressAsync={onPressRightAsync}
-          />
-        )}
+        <ActionButton
+          title={rightTitle}
+          onPress={onPressRight}
+          onPressAsync={!rightDisabled ? onPressRightAsync : undefined}
+          rightDisabled={rightDisabled}
+        />
       </Right>
     </Container>
   );

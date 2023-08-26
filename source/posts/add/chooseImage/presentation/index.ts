@@ -25,6 +25,7 @@ const useViewModel = ({goNext}: Params) => {
     onRefetch: async () => {},
     onTryAgain: async () => {},
     onOpenCamera: () => {},
+    onChooseImage: (path: string) => {},
     onPressNext,
   };
 };

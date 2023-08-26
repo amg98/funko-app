@@ -8,3 +8,7 @@ export type Props = {
     onPressNext: (image: LocalImage) => void;
   };
 };
+
+export type PostProps = {
+  withRightSeparator: boolean;
+};

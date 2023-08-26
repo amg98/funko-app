@@ -9,3 +9,5 @@ export type Props = {
   onPressRight?: () => void;
   onPressRightAsync?: () => Promise<void>;
 };
+
+export type ActionButtonProps = Required<Pick<Props, 'rightDisabled'>>;

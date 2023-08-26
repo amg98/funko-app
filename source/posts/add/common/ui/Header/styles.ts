@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import Text from '../../../../../common/ui/components/Text';
 import TextButton from '../../../../../common/ui/components/TextButton';
+import {ActionButtonProps} from './types';
 
 export const Container = styled.View`
   padding: ${({theme: {device}}) => device.safeTop + 20}px 16px 13px;
@@ -28,7 +29,11 @@ export const Title = styled(Text).attrs({
   text-align: center;
 `;
 
-export const ActionButton = styled(TextButton).attrs(({theme: {colors}}) => ({
-  textVariant: 'body6',
-  textColor: colors.accent,
-}))``;
+export const ActionButton = styled(TextButton).attrs<ActionButtonProps>(
+  ({theme: {colors}}) => ({
+    textVariant: 'body6',
+    textColor: colors.accent,
+  }),
+)<ActionButtonProps>`
+  opacity: ${({rightDisabled}) => (rightDisabled ? 0 : 1)};
+`;

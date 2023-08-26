@@ -3,6 +3,7 @@ import {Screen} from '../../../../common/ui/components/Screen';
 import type {Props} from './types';
 import type {FC} from 'react';
 import Header from '../../common/ui/Header';
+import {Input, Row, SelectedImage} from './styles';
 
 const PostDescription: FC<Props> = ({router, useViewModel}) => {
   const {image, description, canShare, onPressShare, setDescription} =
@@ -19,6 +20,15 @@ const PostDescription: FC<Props> = ({router, useViewModel}) => {
         rightDisabled={!canShare}
         onPressRightAsync={onPressShare}
       />
+      <Row>
+        <SelectedImage source={{uri: image.path}} />
+        <Input
+          value={description}
+          onChangeText={setDescription}
+          placeholder={t('new-post/description-placeholder')}
+          multiline
+        />
+      </Row>
     </Screen>
   );
 };

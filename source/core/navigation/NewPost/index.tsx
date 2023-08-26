@@ -8,7 +8,9 @@ import SetDescriptionScreen from './SetDescription';
 const {Navigator, Screen} = createNativeStackNavigator<NewPostParamList>();
 
 const NewPost: FC = () => (
-  <Navigator screenOptions={rootStackScreenOptions}>
+  <Navigator
+    screenOptions={rootStackScreenOptions}
+    initialRouteName="SetDescription">
     <Screen name="ChooseImage" component={ChooseImageScreen} />
     <Screen
       name="SetDescription"
