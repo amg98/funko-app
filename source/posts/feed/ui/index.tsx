@@ -4,8 +4,8 @@ import {Screen} from '../../../common/ui/components/Screen';
 import Header from './Header';
 import PaginatedList from '../../../common/ui/components/PaginatedList';
 import {ListRenderItemInfo} from 'react-native';
-import {Post} from '../domain/Post';
-import PostCard from './PostCard';
+import {Post} from '../../common/domain/Post';
+import PostCard from '../../common/ui/PostCard';
 import {Separator} from './styles';
 
 const Feed: FC<Props> = ({useViewModel, router}) => {

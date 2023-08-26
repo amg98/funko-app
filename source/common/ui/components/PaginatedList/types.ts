@@ -3,7 +3,10 @@ import {NetworkData} from '../../../domain/NetworkData';
 
 export type Props<T> = Pick<
   FlatListProps<T>,
-  'keyExtractor' | 'ItemSeparatorComponent'
+  | 'keyExtractor'
+  | 'ItemSeparatorComponent'
+  | 'ListHeaderComponent'
+  | 'numColumns'
 > & {
   data: NetworkData<T[]>;
   onLoadNextPage: () => Promise<void>;

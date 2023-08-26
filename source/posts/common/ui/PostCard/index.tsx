@@ -31,7 +31,7 @@ const PostCard: FC<Props> = ({post, onPressComments, onPressProfile}) => {
         <Description>{post.description}</Description>
         <Comments>
           {post.comments.map(it => (
-            <Comment comment={it} onPressProfile={onPressProfile} />
+            <Comment key={it.id} comment={it} onPressProfile={onPressProfile} />
           ))}
           <SeeComments onPress={handlePressComments}>
             {t('feed-card/see-comments', {count: post.totalComments})}

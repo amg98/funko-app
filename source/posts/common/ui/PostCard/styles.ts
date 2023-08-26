@@ -15,8 +15,8 @@ export const Header = styled.View`
 export const PostImage = styled(Image).attrs({
   contentFit: 'cover',
 })`
-  width: ${({theme: {device}}) => device.width};
-  height: ${({theme: {device}}) => device.width / 1.42};
+  width: ${({theme: {device}}) => device.width}px;
+  height: ${({theme: {device}}) => device.width / 1.42}px;
 `;
 
 export const UserName = styled(Text).attrs({
