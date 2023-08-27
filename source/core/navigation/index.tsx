@@ -1,5 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {FC} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {RootParamsList} from './types';
 import {generalStackScreenOptions, transparentModal} from './constants';
 import SignIn from './SignIn';
@@ -8,11 +8,28 @@ import PostDetailScreen from './PostDetail';
 import ProfileScreen from './Profile';
 import NewPost from './NewPost';
 import {useIsLoggedIn} from '../../user/auth/loggedIn/data';
+import {useCheckAuthStatus} from '../../user/auth/checkStatus/data';
+import {LayoutAnimation} from 'react-native';
 
 const {Navigator, Screen} = createNativeStackNavigator<RootParamsList>();
 
 const AppNavigator: FC = () => {
+  const {checkAuthStatus} = useCheckAuthStatus();
   const loggedIn = useIsLoggedIn();
+
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      await checkAuthStatus();
+      LayoutAnimation.easeInEaseOut();
+      setReady(true);
+    })();
+  }, [checkAuthStatus]);
+
+  if (!ready) {
+    return null;
+  }
 
   return (
     <Navigator

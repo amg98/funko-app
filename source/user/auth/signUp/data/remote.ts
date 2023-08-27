@@ -29,17 +29,23 @@ const mapRegisterFormToBackend = (form: RegisterForm): FirebaseSignUpInput => ({
 export const signUpMutation = async (formData: RegisterForm) => {
   try {
     const apiKey = firebase.app().options.apiKey;
-    const {idToken, refreshToken, expiresIn, localId}: FirebaseSignUpResponse =
-      await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(mapRegisterFormToBackend(formData)),
+    const response = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      ).then(it => it.json());
+        body: JSON.stringify(mapRegisterFormToBackend(formData)),
+      },
+    );
+
+    if (response.status !== 200) {
+      throw new AppError(t('alert/unknown-error'));
+    }
+
+    const {idToken, refreshToken, expiresIn, localId}: FirebaseSignUpResponse =
+      await response.json();
 
     const user: UserDocument = {
       id: localId,

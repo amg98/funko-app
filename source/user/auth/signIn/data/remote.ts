@@ -29,17 +29,23 @@ const mapToBackend = (form: LoginForm): FirebaseSignInInput => ({
 export const signInMutation = async (formData: LoginForm) => {
   try {
     const apiKey = firebase.app().options.apiKey;
-    const {idToken, refreshToken, expiresIn, localId}: FirebaseSignInResponse =
-      await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(mapToBackend(formData)),
+    const response = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      ).then(it => it.json());
+        body: JSON.stringify(mapToBackend(formData)),
+      },
+    );
+
+    if (response.status !== 200) {
+      throw new AppError(t('alert/unknown-error'));
+    }
+
+    const {idToken, refreshToken, expiresIn, localId}: FirebaseSignInResponse =
+      await response.json();
 
     const {docs} = await firestore()
       .collection(COLLECTIONS.Users)
@@ -55,7 +61,6 @@ export const signInMutation = async (formData: LoginForm) => {
       user,
     };
   } catch (error) {
-    console.log(error);
     throw new AppError(t('alert/unknown-error'));
   }
 };
