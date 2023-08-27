@@ -1,4 +1,4 @@
-import {useCallback, useMemo, useState} from 'react';
+import {useCallback, useMemo, useRef, useState} from 'react';
 import {ActivityIndicator, FlatList} from 'react-native';
 import {Content, Footer, LoadingState} from './styles';
 import type {Props} from './types';
@@ -17,12 +17,18 @@ const PaginatedList = <T,>({
   const [loadingNextPage, setLoadingNextPage] = useState(false);
   const [loadingRefetch, setLoadingRefetch] = useState(false);
 
+  const endReached = useRef(false);
+
   const {t} = useTranslation();
 
   const handleLoadNextPage = useCallback(async () => {
+    if (!endReached.current) {
+      return;
+    }
     setLoadingNextPage(true);
     await onLoadNextPage();
     setLoadingNextPage(false);
+    endReached.current = false;
   }, [onLoadNextPage]);
 
   const handleRefetch = useCallback(async () => {
@@ -41,6 +47,10 @@ const PaginatedList = <T,>({
     }),
     [safeBottom],
   );
+
+  const onEndReached = useCallback(() => {
+    endReached.current = true;
+  }, []);
 
   if (data.type === 'loading') {
     return (
@@ -73,7 +83,8 @@ const PaginatedList = <T,>({
       renderItem={renderItem}
       refreshing={loadingRefetch}
       onRefresh={handleRefetch}
-      onEndReached={handleLoadNextPage}
+      onMomentumScrollEnd={handleLoadNextPage}
+      onEndReached={onEndReached}
       contentContainerStyle={listContainerStyle}
       ListFooterComponent={loadingNextPage ? footer : undefined}
       {...listProps}

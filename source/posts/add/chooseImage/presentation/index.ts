@@ -53,7 +53,8 @@ const useViewModel = ({goNext}: Params) => {
   }, [getImages]);
 
   const onLoadNextPage = useCallback(async () => {
-    const lastImageId = images.type === 'data' ? images.data?.[0]?.id : null;
+    const lastImageId =
+      images.type === 'data' ? images.data?.[images.data.length - 1]?.id : null;
     await getImages(lastImageId);
   }, [getImages, images]);
 

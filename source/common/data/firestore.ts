@@ -1,7 +1,6 @@
 export const COLLECTIONS = {
   Users: 'users',
   Posts: 'posts',
-  Comments: 'comments',
 };
 
 export type UserDocument = {
@@ -9,4 +8,24 @@ export type UserDocument = {
   name: string;
   surname: string;
   avatar: string | null;
+};
+
+export type PostDocument = {
+  id: string;
+  user: {
+    id: string;
+    name: string;
+    avatar: string | null;
+  };
+  imageUrl: string;
+  description: string;
+  comments: {
+    id: string;
+    user: {
+      id: string;
+      name: string;
+    };
+    comment: string;
+  }[];
+  numComments: number;
 };
