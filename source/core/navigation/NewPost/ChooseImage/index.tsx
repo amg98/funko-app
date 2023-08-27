@@ -2,11 +2,10 @@ import {useCallback} from 'react';
 import {ScreenComponent} from '../../types';
 import ChoosePostImage from '../../../../posts/add/chooseImage/ui';
 import useViewModel from '../../../../posts/add/chooseImage/presentation';
-import {LocalImage} from '../../../../posts/add/common/domain/LocalImage';
 
 const ChooseImageScreen: ScreenComponent<'ChooseImage'> = ({navigation}) => {
   const goToDescription = useCallback(
-    (image: LocalImage) => {
+    (image: string) => {
       navigation.navigate('SetDescription', {image});
     },
     [navigation],

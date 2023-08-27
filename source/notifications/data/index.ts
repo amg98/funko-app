@@ -10,7 +10,6 @@ import {
   requestNotificationsPermission,
 } from './permission';
 import {NEW_POST_TOPIC} from './topic';
-import {sendPushNotification} from './sendNotification';
 
 const normalizeBackendNotificationForNotifee = (
   fcmNotification: FirebaseMessagingTypes.Notification,
@@ -95,11 +94,6 @@ export const useNotificationsEffect = () => {
 
   useEffect(() => {
     handleSubscribeToTopic();
-    sendPushNotification({
-      title: 'TITLE',
-      subtitle: 'DESC',
-      topic: NEW_POST_TOPIC,
-    });
     return () => {
       handleUnsubscribeToTopic();
     };

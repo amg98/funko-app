@@ -19,6 +19,7 @@ export const SelectedImage = styled(Image)`
 export const Input = styled(TextInput).attrs(({theme: {colors}}) => ({
   placeholderTextColor: colors.neutral0,
   selectionColor: colors.neutral0,
+  textAlignVertical: 'top',
 }))`
   ${TEXT_STYLES.body3};
   color: ${({theme: {colors}}) => colors.neutral0};

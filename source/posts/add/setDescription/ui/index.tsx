@@ -21,7 +21,7 @@ const PostDescription: FC<Props> = ({router, useViewModel}) => {
         onPressRightAsync={onPressShare}
       />
       <Row>
-        <SelectedImage source={{uri: image.path}} />
+        <SelectedImage source={{uri: image}} />
         <Input
           value={description}
           onChangeText={setDescription}

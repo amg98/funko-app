@@ -1,4 +1,4 @@
-import {Image as ImageBase} from 'expo-image';
+import {ImageBackground as ImageBase} from 'react-native';
 import styled from 'styled-components/native';
 import {ImageProps} from './types';
 import {RectButton} from 'react-native-gesture-handler';

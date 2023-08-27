@@ -18,7 +18,6 @@ const ChoosePostImage: FC<Props> = ({router, useViewModel}) => {
     onPressNext,
     onRefetch,
     onChooseImage,
-    onTryAgain,
   } = useViewModel({goNext: router.onPressNext});
   const {t} = useTranslation();
   const {device} = useTheme();
@@ -27,11 +26,11 @@ const ChoosePostImage: FC<Props> = ({router, useViewModel}) => {
     () => (
       <CameraButton
         width={device.width - 90}
-        imageUrl={selectedImage?.path ?? null}
+        imageUrl={selectedImage}
         onPress={onOpenCamera}
       />
     ),
-    [device.width, onOpenCamera, selectedImage?.path],
+    [device.width, onOpenCamera, selectedImage],
   );
 
   const renderItem = useCallback(
@@ -60,7 +59,7 @@ const ChoosePostImage: FC<Props> = ({router, useViewModel}) => {
         data={images}
         onLoadNextPage={onLoadNextPage}
         onRefetch={onRefetch}
-        onPressEmptyStateButton={onTryAgain}
+        onPressEmptyStateButton={onRefetch}
         renderItem={renderItem}
         numColumns={3}
         ItemSeparatorComponent={Separator}

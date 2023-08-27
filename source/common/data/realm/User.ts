@@ -9,6 +9,7 @@ export class RealmUser extends Realm.Object<RealmUser> {
 
   static schema = {
     name: 'RealmUser',
+    primaryKey: 'id',
     properties: {
       id: 'string',
       name: 'string',
@@ -16,6 +17,5 @@ export class RealmUser extends Realm.Object<RealmUser> {
       avatar: 'string?',
       isLoggedUser: 'bool',
     },
-    primaryKey: 'id',
   };
 }

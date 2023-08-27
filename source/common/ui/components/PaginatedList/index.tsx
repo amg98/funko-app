@@ -53,6 +53,7 @@ const PaginatedList = <T,>({
   if (data.type === 'data' && !data.data.length) {
     return (
       <Content>
+        <>{listProps.ListHeaderComponent ?? null}</>
         <ScreenState
           description={t('hint/empty')}
           buttonTitle={t('action/try-again')}
