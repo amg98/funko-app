@@ -1,16 +1,33 @@
-import {NetworkData} from '../../../common/domain/NetworkData';
+import {useCallback} from 'react';
 import {useNotificationsEffect} from '../../../notifications/data';
-import {Post} from '../../common/domain/Post';
-import {MOCK_POSTS} from '../../common/domain/PostMocks';
+import {useFeed} from '../data';
+import {showError} from '../../../common/ui/utils/error';
 
 const useViewModel = () => {
   useNotificationsEffect();
 
+  const {posts, fetchNextPage, refetch} = useFeed();
+
+  const onLoadNextPage = useCallback(async () => {
+    try {
+      await fetchNextPage();
+    } catch (error) {
+      showError(error);
+    }
+  }, [fetchNextPage]);
+
+  const onRefetch = useCallback(async () => {
+    try {
+      await refetch();
+    } catch (error) {
+      showError(error);
+    }
+  }, [refetch]);
+
   return {
-    posts: {type: 'data', data: MOCK_POSTS} as NetworkData<Post[]>,
-    onLoadNextPage: async () => {},
-    onRefetch: async () => {},
-    onTryAgain: async () => {},
+    posts,
+    onLoadNextPage,
+    onRefetch,
   };
 };
 

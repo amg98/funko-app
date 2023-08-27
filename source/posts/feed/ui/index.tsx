@@ -9,7 +9,7 @@ import PostCard from '../../common/ui/PostCard';
 import {Separator} from './styles';
 
 const Feed: FC<Props> = ({useViewModel, router}) => {
-  const {posts, onLoadNextPage, onRefetch, onTryAgain} = useViewModel();
+  const {posts, onLoadNextPage, onRefetch} = useViewModel();
 
   const renderItem = useCallback(
     ({item}: ListRenderItemInfo<Post>) => (
@@ -33,7 +33,7 @@ const Feed: FC<Props> = ({useViewModel, router}) => {
         ItemSeparatorComponent={Separator}
         onLoadNextPage={onLoadNextPage}
         onRefetch={onRefetch}
-        onPressEmptyStateButton={onTryAgain}
+        onPressEmptyStateButton={onRefetch}
         renderItem={renderItem}
       />
     </Screen>

@@ -6,7 +6,7 @@ import {NEW_POST_TOPIC} from '../../../../notifications/data/topic';
 import {createPost, uploadImage} from './remote';
 import {randomUUID} from 'expo-crypto';
 import {useMe} from '../../../../user/me/data';
-import {useFeedLocalDataSource} from '../../../common/data/feedLocalDataSource';
+import {useLocalDataSource} from './local';
 
 type Input = {
   imagePath: string;
@@ -15,7 +15,7 @@ type Input = {
 
 export const useAddPost = () => {
   const {me} = useMe();
-  const {invalidate: invalidateFeed} = useFeedLocalDataSource();
+  const {invalidateFeed} = useLocalDataSource();
 
   const addPost = useCallback(
     async ({imagePath, description}: Input) => {

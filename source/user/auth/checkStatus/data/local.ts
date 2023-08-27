@@ -1,10 +1,19 @@
 import {useCallback, useContext} from 'react';
 import {AuthData, MMKVContext, MMKVKeys} from '../../../../common/data/mmkv';
 import {useQueryClient} from 'react-query';
+import {Me} from '../../common/domain/me';
+import {QUERIES} from '../../../../common/data/reactQuery';
 
 export const useLocalDataSource = () => {
   const mmkv = useContext(MMKVContext);
   const client = useQueryClient();
+
+  const setMe = useCallback(
+    (me: Me) => {
+      client.setQueryData<Me>(QUERIES.Me, me);
+    },
+    [client],
+  );
 
   const removeAuthData = useCallback(() => {
     mmkv.delete(MMKVKeys.AuthData);
@@ -27,6 +36,7 @@ export const useLocalDataSource = () => {
   }, [mmkv]);
 
   return {
+    setMe,
     removeAuthData,
     setAuthData,
     getAuthData,

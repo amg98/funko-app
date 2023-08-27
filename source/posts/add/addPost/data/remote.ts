@@ -30,7 +30,7 @@ export const uploadImage = async (path: string) => {
     const imageUrl = await ref.getDownloadURL();
 
     return imageUrl;
-  } catch {
+  } catch (error) {
     throw new AppError(t('alert/unknown-error'));
   }
 };
@@ -70,6 +70,7 @@ export const createPost = async ({
         },
       })),
       numComments: 3,
+      createdAt: firestore.FieldValue.serverTimestamp(),
     };
     await firestore().collection(COLLECTIONS.Posts).add(post);
   } catch {

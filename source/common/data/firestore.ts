@@ -1,3 +1,5 @@
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+
 export const COLLECTIONS = {
   Users: 'users',
   Posts: 'posts',
@@ -30,4 +32,5 @@ export type PostDocument = {
     comment: string;
   }[];
   numComments: number;
+  createdAt: FirebaseFirestoreTypes.FieldValue;
 };

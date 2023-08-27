@@ -1,11 +1,12 @@
 import {useCallback} from 'react';
-import {useRemoteDataSource} from './remote';
+import {fetchMe, useRemoteDataSource} from './remote';
 import {useLocalDataSource} from './local';
 
 export const useCheckAuthStatus = () => {
   const {checkTokenValid, refreshToken: handleRefreshToken} =
     useRemoteDataSource();
-  const {removeAuthData, setAuthData, getAuthData} = useLocalDataSource();
+  const {removeAuthData, setAuthData, getAuthData, setMe} =
+    useLocalDataSource();
 
   const checkAuthStatus = useCallback(async () => {
     try {
@@ -19,10 +20,11 @@ export const useCheckAuthStatus = () => {
         return;
       }
 
+      let meId: string;
+
       if (new Date(authData.expirationDate) < new Date()) {
-        const {expiresIn, idToken, refreshToken} = await handleRefreshToken(
-          authData.refreshToken,
-        );
+        const {expiresIn, idToken, refreshToken, userId} =
+          await handleRefreshToken(authData.refreshToken);
         const expirationDate = new Date();
         expirationDate.setSeconds(
           expirationDate.getSeconds() + parseInt(expiresIn, 10),
@@ -33,9 +35,14 @@ export const useCheckAuthStatus = () => {
           rememberMe: authData.rememberMe,
           expirationDate: expirationDate.toISOString(),
         });
+        meId = userId;
       } else {
-        await checkTokenValid(authData.idToken);
+        const {userId} = await checkTokenValid(authData.idToken);
+        meId = userId;
       }
+
+      const me = await fetchMe(meId);
+      setMe(me);
     } catch (error) {
       removeAuthData();
     }
@@ -45,6 +52,7 @@ export const useCheckAuthStatus = () => {
     handleRefreshToken,
     removeAuthData,
     setAuthData,
+    setMe,
   ]);
 
   return {

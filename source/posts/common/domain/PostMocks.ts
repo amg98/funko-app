@@ -3,6 +3,7 @@ const generateComment = (index: number, userIndex: number) => ({
   user: {
     id: `user${userIndex}`,
     name: `user${userIndex}`,
+    surname: '',
   },
   content: 'Content',
 });
@@ -17,6 +18,7 @@ const generatePost = (index: number) => {
     owner: {
       id: `user${index}`,
       name: `user${index}`,
+      surname: '',
       avatar: 'https://picsum.photos/64',
     },
     imageUrl: 'https://picsum.photos/500',
