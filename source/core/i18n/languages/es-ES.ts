@@ -50,6 +50,9 @@ const dictionary = {
   // Alerts
   'alert/error-title': 'An error has happened',
   'alert/unknown-error': 'An unexpected error happened. Please try again later',
+
+  // Notifications
+  'notifications/channel-name': 'FunkoTest',
 };
 
 export default dictionary;
