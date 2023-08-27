@@ -8,7 +8,7 @@ import {initI18N} from './i18n';
 import AppNavigator from './navigation';
 import {MMKVContext} from '../common/data/mmkv';
 import {MMKV} from 'react-native-mmkv';
-import {RealmProvider} from '../common/data/realm';
+import {QueryClient, QueryClientProvider} from 'react-query';
 
 if (
   Platform.OS === 'android' &&
@@ -29,10 +29,11 @@ export const App: FC = () => {
   }, []);
 
   const mmkv = useMemo(() => new MMKV(), []);
+  const queryClient = useMemo(() => new QueryClient(), []);
 
   return (
     <MMKVContext.Provider value={mmkv}>
-      <RealmProvider deleteRealmIfMigrationNeeded>
+      <QueryClientProvider client={queryClient}>
         <SafeAreaProvider>
           <ThemeProvider>
             <GestureHandlerRootView style={styles.gestureHandler}>
@@ -43,7 +44,7 @@ export const App: FC = () => {
             </GestureHandlerRootView>
           </ThemeProvider>
         </SafeAreaProvider>
-      </RealmProvider>
+      </QueryClientProvider>
     </MMKVContext.Provider>
   );
 };

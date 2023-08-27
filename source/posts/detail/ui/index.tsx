@@ -8,7 +8,7 @@ import ScrollNetworkData from '../../../common/ui/components/ScrollNetworkData';
 import Header from './Header';
 
 const PostDetail: FC<Props> = ({router, useViewModel}) => {
-  const {post, name, onRefetch, onTryAgain} = useViewModel({
+  const {post, name, onRefetch} = useViewModel({
     postId: router.postId,
   });
 
@@ -30,7 +30,7 @@ const PostDetail: FC<Props> = ({router, useViewModel}) => {
         data={post}
         renderData={renderData}
         onRefetch={onRefetch}
-        onTryAgain={onTryAgain}
+        onTryAgain={onRefetch}
       />
     </Screen>
   );

@@ -1,9 +1,10 @@
 import {useCallback, useContext} from 'react';
 import {AuthData, MMKVContext, MMKVKeys} from '../../../../common/data/mmkv';
-import {useRealm} from '../../../../common/data/realm';
-import {RealmUser} from '../../../../common/data/realm/User';
 import {AppError} from '../../../../common/domain/AppError';
 import {t} from 'i18next';
+import {useQueryClient} from 'react-query';
+import {QUERIES} from '../../../../common/data/reactQuery';
+import {Me} from '../domain/me';
 
 type SaveAuthDataInput = {
   expiresIn: string;
@@ -21,7 +22,7 @@ type SaveUserDataInput = {
 
 export const useSignInLocalDataSource = () => {
   const mmkv = useContext(MMKVContext);
-  const realm = useRealm();
+  const client = useQueryClient();
 
   const saveAuthData = useCallback(
     ({expiresIn, idToken, refreshToken, rememberMe}: SaveAuthDataInput) => {
@@ -47,22 +48,9 @@ export const useSignInLocalDataSource = () => {
 
   const saveUserData = useCallback(
     ({id, name, surname, avatar}: SaveUserDataInput) => {
-      try {
-        realm.write(() => {
-          realm.create<RealmUser>(RealmUser.schema.name, {
-            id,
-            name,
-            surname,
-            avatar,
-            isLoggedUser: true,
-          });
-        });
-      } catch (error) {
-        console.log(error);
-        throw new AppError(t('alert/unknown-error'));
-      }
+      client.setQueryData<Me>(QUERIES.Me, {id, name, surname, avatar});
     },
-    [realm],
+    [client],
   );
 
   return {

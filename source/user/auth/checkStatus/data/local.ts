@@ -1,17 +1,15 @@
 import {useCallback, useContext} from 'react';
 import {AuthData, MMKVContext, MMKVKeys} from '../../../../common/data/mmkv';
-import {useRealm} from '../../../../common/data/realm';
+import {useQueryClient} from 'react-query';
 
 export const useLocalDataSource = () => {
   const mmkv = useContext(MMKVContext);
-  const realm = useRealm();
+  const client = useQueryClient();
 
   const removeAuthData = useCallback(() => {
     mmkv.delete(MMKVKeys.AuthData);
-    realm.write(() => {
-      realm.deleteAll();
-    });
-  }, [mmkv, realm]);
+    client.clear();
+  }, [client, mmkv]);
 
   const setAuthData = useCallback(
     (authData: AuthData) => {

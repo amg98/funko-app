@@ -3,6 +3,7 @@ export type Post = {
   owner: {
     id: string;
     name: string;
+    surname: string;
     avatar: string | null;
   };
   imageUrl: string;
@@ -16,6 +17,7 @@ export type Comment = {
   user: {
     id: string;
     name: string;
+    surname: string;
   };
   content: string;
 };

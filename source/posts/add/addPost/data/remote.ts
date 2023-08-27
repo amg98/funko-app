@@ -55,16 +55,18 @@ export const createPost = async ({
       description,
       user: {
         id: ownerId,
-        name: `${owner.name} ${owner.surname}`,
+        name: owner.name,
+        surname: owner.surname,
         avatar: owner.avatar,
       },
       // User can't add comments from the app, so let's add some mock comments
       comments: new Array(3).fill(0).map((_, index) => ({
-        id: `${index}`,
+        id: `${id}-${index}`,
         comment: `Comment ${index}`,
         user: {
           id: owner.id,
-          name: `${owner.name} ${owner.surname}`,
+          name: owner.name,
+          surname: owner.surname,
         },
       })),
       numComments: 3,

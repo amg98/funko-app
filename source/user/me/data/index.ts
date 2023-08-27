@@ -1,21 +1,15 @@
-import {useQuery} from '../../../common/data/realm';
-import {RealmUser} from '../../../common/data/realm/User';
-import {useMemo} from 'react';
-import {Me} from '../domain';
-
-const mapToDomain = (user: RealmUser): Me => ({
-  id: user.id,
-  name: user.name,
-  surname: user.surname,
-  avatar: user.avatar,
-});
+import {Me} from '../../auth/common/domain/me';
+import {useQueryClient} from 'react-query';
+import {QUERIES} from '../../../common/data/reactQuery';
 
 export const useMe = () => {
-  const users = useQuery(RealmUser);
+  const client = useQueryClient();
 
-  const me = useMemo(() => {
-    return mapToDomain(users.filter(it => it.isLoggedUser)[0]);
-  }, [users]);
+  const me = client.getQueryData<Me>(QUERIES.Me);
+
+  if (!me) {
+    throw new Error('Me is not in cache');
+  }
 
   return {
     me,

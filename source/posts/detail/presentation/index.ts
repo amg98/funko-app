@@ -1,14 +1,23 @@
-import {NetworkData} from '../../../common/domain/NetworkData';
-import {Post} from '../../common/domain/Post';
-import {MOCK_POSTS} from '../../common/domain/PostMocks';
+import {useCallback} from 'react';
+import {usePostDetail} from '../data';
 import {Params} from './types';
+import {showError} from '../../../common/ui/utils/error';
 
 const useViewModel = ({postId}: Params) => {
+  const {post, refetch} = usePostDetail(postId);
+
+  const onRefetch = useCallback(async () => {
+    try {
+      await refetch();
+    } catch (error) {
+      showError(error);
+    }
+  }, [refetch]);
+
   return {
-    post: {type: 'data', data: MOCK_POSTS[0]} as NetworkData<Post>,
-    name: 'AAA',
-    onRefetch: async () => {},
-    onTryAgain: async () => {},
+    post,
+    name: post.type === 'data' ? post.data.owner.name : '',
+    onRefetch,
   };
 };
 

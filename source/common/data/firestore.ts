@@ -15,6 +15,7 @@ export type PostDocument = {
   user: {
     id: string;
     name: string;
+    surname: string;
     avatar: string | null;
   };
   imageUrl: string;
@@ -24,6 +25,7 @@ export type PostDocument = {
     user: {
       id: string;
       name: string;
+      surname: string;
     };
     comment: string;
   }[];

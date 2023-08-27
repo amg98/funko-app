@@ -8,7 +8,10 @@ const Comment: FC<Props> = ({comment, onPressProfile, style}) => {
 
   return (
     <Content style={style}>
-      <Owner onPress={handlePressProfile}>{comment.user.name}</Owner>{' '}
+      <Owner
+        onPress={
+          handlePressProfile
+        }>{`${comment.user.name} ${comment.user.surname}`}</Owner>{' '}
       {comment.content}
     </Content>
   );
