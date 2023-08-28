@@ -4,6 +4,8 @@
 
 FunkoApp is a mobile application for sharing Funko Pop figure photos with fellow collectors.
 
+[Download link (Android)](https://drive.google.com/file/d/1EIQn2GBDb9iolymw00noKsJyakiA2An3/view?usp=sharing)
+
 ## Installation and Running
 
 1. **Clone the Repository**

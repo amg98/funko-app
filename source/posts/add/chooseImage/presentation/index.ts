@@ -6,6 +6,8 @@ import {fetchImages, getImageFromCamera} from '../data';
 import {AppError} from '../../../../common/domain/AppError';
 import {showError} from '../../../../common/ui/utils/error';
 
+const PAGE_SIZE = 10;
+
 const useViewModel = ({goNext}: Params) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [images, setImages] = useState<NetworkData<LocalImage[]>>({
@@ -31,7 +33,7 @@ const useViewModel = ({goNext}: Params) => {
       }
       loadingImages.current = true;
 
-      const newImages = await fetchImages(lastImageId);
+      const newImages = await fetchImages(lastImageId, PAGE_SIZE);
       setImages(prev => ({
         type: 'data',
         data: [...(prev.type === 'data' ? prev.data : []), ...newImages],

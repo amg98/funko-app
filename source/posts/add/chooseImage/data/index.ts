@@ -17,6 +17,7 @@ import {
 
 export const fetchImages = async (
   lastImageId: string | null,
+  pageSize: number,
 ): Promise<LocalImage[]> => {
   try {
     const isAvailable = await isAvailableAsync();
@@ -34,7 +35,7 @@ export const fetchImages = async (
 
     const {assets} = await getAssetsAsync({
       after: lastImageId ?? undefined,
-      first: 10,
+      first: pageSize,
       mediaType: 'photo',
       sortBy: 'creationTime',
     });
