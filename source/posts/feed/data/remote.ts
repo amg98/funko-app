@@ -30,8 +30,7 @@ export const fetchFeedPage = async (
     const {docs} = await query.get();
 
     return docs.map(it => mapPostDocumentToPost(it.data() as PostDocument));
-  } catch (error) {
-    console.log(error);
+  } catch {
     throw new AppError(t('alert/unknown-error'));
   }
 };

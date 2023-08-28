@@ -1,6 +1,7 @@
 export type Profile = {
   id: string;
   name: string;
+  surname: string;
   avatar: string | null;
   posts: Post[];
 };

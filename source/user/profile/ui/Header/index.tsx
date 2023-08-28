@@ -11,7 +11,9 @@ const Header: FC<Props> = ({user, onGoBack}) => {
       {user.type === 'data' && (
         <User>
           <Avatar size={88.73} uri={user.data.avatar} />
-          <UserName>{user.data.name}</UserName>
+          <UserName>
+            {user.data.name} {user.data.surname}
+          </UserName>
         </User>
       )}
       <Spacer />

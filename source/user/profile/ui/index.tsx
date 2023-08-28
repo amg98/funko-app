@@ -10,9 +10,7 @@ import {mapNetworkData} from '../../../common/domain/NetworkData';
 import Header from './Header';
 
 const Profile: FC<Props> = ({router, useViewModel}) => {
-  const {user, onLoadNextPage, onRefetch, onTryAgain} = useViewModel(
-    router.userId,
-  );
+  const {user, onLoadNextPage, onRefetch} = useViewModel(router.userId);
 
   const header = useMemo(() => {
     return <Header user={user} onGoBack={router.goBack} />;
@@ -38,7 +36,7 @@ const Profile: FC<Props> = ({router, useViewModel}) => {
         data={posts}
         onLoadNextPage={onLoadNextPage}
         onRefetch={onRefetch}
-        onPressEmptyStateButton={onTryAgain}
+        onPressEmptyStateButton={onRefetch}
         renderItem={renderItem}
         numColumns={3}
         ItemSeparatorComponent={Separator}
